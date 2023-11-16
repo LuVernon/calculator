@@ -1,6 +1,9 @@
 let firstNumber = "";
 let operator = "";
 let secondNumber = "";
+let displayValue = "";
+let calcBody = document.querySelector("#calcBody");
+let screen = document.querySelector("#output");
 
 function add (a, b) {
     return a+b;
@@ -26,3 +29,13 @@ function operate (first, second, oper) {
         case "/": divide(first, second);
     }
 }
+
+function display (x) {
+    screen.textContent = x;
+}
+
+calcBody.addEventListener("click", (e)=>{
+    displayValue += e.target.textContent;
+    display(displayValue);
+});
+
