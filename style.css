@@ -1,23 +1,47 @@
 body {
     display: flex;
+    font-family: monospace;
     justify-content: center;
+    background-color: indianred;
 }
 
 #calc {
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: coral;
+    padding: 10px;
+    border-radius: 5%;
 }
 
 #output {
     text-align: center;
-    width: 170px;
-    height: 30px;
-    background-color: grey;
+    width: 220px;
+    height: 75px;
+    margin-bottom: 25px;
+    border-radius: 5%;
+    background-color: rgb(197, 51, 51);
+    color: white;
+    font-size: 25px;
+    padding-top: 20px;
 }
 
 #calcBody {
     display: grid;
     gap: 3px;
     grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+button {
+    height: 50px;
+    width: 50px;
+    border-radius: 5%;
+    border-style: none;
+    background-color: chocolate;
+    font-size: large;
+    color: white;
+}
+
+button:hover {
+    background-color: rgba(210, 105, 30, 0.685);
 }

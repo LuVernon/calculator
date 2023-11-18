@@ -32,17 +32,17 @@ function operate (first, second, oper) {
     switch (oper) {
         case "+": 
             display(add(first, second));
-            displayValue = `${output.textContent} ${que} `;
+            que == "" ? displayValue = `${output.textContent}` : displayValue = `${output.textContent} ${que} `;
             que = "";
             break;
         case "-": 
             display(subtract(first, second));
-            displayValue = `${output.textContent} ${que} `;
+            que == "" ? displayValue = `${output.textContent}` : displayValue = `${output.textContent} ${que} `;
             que = "";
             break;
         case "*": 
             display(multiply(first, second));
-            displayValue = `${output.textContent} ${que} `;
+            que == "" ? displayValue = `${output.textContent}` : displayValue = `${output.textContent} ${que} `;
             que = "";
             break;
         case "/": 
@@ -56,7 +56,7 @@ function operate (first, second, oper) {
             }
             else {
                 display(divide(first, second));
-                displayValue = `${output.textContent} ${que} `;
+                que == "" ? displayValue = `${output.textContent}` : displayValue = `${output.textContent} ${que} `;
                 que = "";
                 break;
             }
