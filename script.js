@@ -6,6 +6,8 @@ let calcBody = document.querySelector("#calcBody");
 let screen = document.querySelector("#output");
 
 function add (a, b) {
+    a = Number(a);
+    b = Number(b);
     return a+b;
 }
 
@@ -18,7 +20,7 @@ function multiply (a, b) {
 }
 
 function divide (a, b) {
-    return a/b;
+    return Math.round((a/b)*100)/100;
 }
 
 function display (x) {
@@ -29,15 +31,19 @@ function operate (first, second, oper) {
     switch (oper) {
         case "+": 
             display(add(first, second));
+            displayValue = `${screen.textContent} + `;
             break;
         case "-": 
             display(subtract(first, second));
+            displayValue = `${screen.textContent} - `;
             break;
         case "*": 
             display(multiply(first, second));
+            displayValue = `${screen.textContent} * `;
             break;
         case "/": 
             display(divide(first, second));
+            displayValue = `${screen.textContent} / `;
             break;
     }
 }
@@ -49,14 +55,21 @@ calcBody.addEventListener("click", (e)=>{
         display(displayValue);
     }
     else if (pressed == "enter") {
+        let arr = displayValue.split(" ");
         [firstNumber, operator, secondNumber] = displayValue.split(" ");
-        operate(firstNumber, secondNumber, operator);  
+        operate(firstNumber, secondNumber, operator);   
     }
     else if (pressed == "add" || pressed == "subtract"|| pressed == "mult"|| pressed == "divide") {
-        displayValue += ` ${e.target.textContent} `;
-        display(displayValue);
+        if (displayValue.split(" ").length == 3) {
+            [firstNumber, operator, secondNumber] = displayValue.split(" ");
+            operate(firstNumber, secondNumber, operator)
+        }
+        else {
+            displayValue += ` ${e.target.textContent} `;
+            display(displayValue);
+        }
     }
-    else {
+    else if (e.target.id != "calcBody") {
         displayValue += e.target.textContent;
         display(displayValue);
     }
