@@ -91,6 +91,21 @@ calcBody.addEventListener("click", (e)=>{
             display(displayValue);
         }
     }
+    else if (pressed == "period") {
+        let arr = displayValue.split(" ");
+        if (arr.length < 2) {
+            if (arr[0].includes(".")) {
+            return;
+            }
+        }
+        else if (arr.length > 2) { 
+            if (arr[2].includes(".")) {
+            return;
+            }
+        }
+        displayValue += e.target.textContent;
+        display(displayValue);
+    }
     else if (e.target.id != "calcBody") {
         displayValue += e.target.textContent;
         display(displayValue);
