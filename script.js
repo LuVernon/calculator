@@ -42,9 +42,16 @@ function operate (first, second, oper) {
             displayValue = `${screen.textContent} * `;
             break;
         case "/": 
-            display(divide(first, second));
-            displayValue = `${screen.textContent} / `;
-            break;
+            if (second == 0) {
+                displayValue == "";
+                display("Does Not Compute!");
+                break;
+            }
+            else {
+                display(divide(first, second));
+                displayValue = `${screen.textContent} / `;
+                break;
+            }
     }
 }
 
