@@ -86,6 +86,9 @@ calcBody.addEventListener("click", (e)=>{
             [firstNumber, operator, secondNumber] = displayValue.split(" ");
             operate(firstNumber, secondNumber, operator);
         }
+        else if (displayValue == "") {
+            return;
+        } 
         else {
             displayValue += ` ${e.target.textContent} `;
             display(displayValue);
@@ -106,7 +109,7 @@ calcBody.addEventListener("click", (e)=>{
         displayValue += e.target.textContent;
         display(displayValue);
     }
-    else if (e.target.id != "calcBody") {
+    else if (pressed != "calcBody") {
         displayValue += e.target.textContent;
         display(displayValue);
     }
