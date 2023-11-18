@@ -2,8 +2,9 @@ let firstNumber = "";
 let operator = "";
 let secondNumber = "";
 let displayValue = "";
+let que = "";
 let calcBody = document.querySelector("#calcBody");
-let screen = document.querySelector("#output");
+let output = document.querySelector("#output");
 
 function add (a, b) {
     a = Number(a);
@@ -24,32 +25,39 @@ function divide (a, b) {
 }
 
 function display (x) {
-    screen.textContent = x;
+    output.textContent = x;
 }
 
 function operate (first, second, oper) {
     switch (oper) {
         case "+": 
             display(add(first, second));
-            displayValue = `${screen.textContent} + `;
+            displayValue = `${output.textContent} ${que} `;
+            que = "";
             break;
         case "-": 
             display(subtract(first, second));
-            displayValue = `${screen.textContent} - `;
+            displayValue = `${output.textContent} ${que} `;
+            que = "";
             break;
         case "*": 
             display(multiply(first, second));
-            displayValue = `${screen.textContent} * `;
+            displayValue = `${output.textContent} ${que} `;
+            que = "";
             break;
         case "/": 
-            if (second == 0) {
-                displayValue == "";
+            if (Number(second) == 0) {
+                displayValue = "";
+                operator = "";
+                secondNumber = "";
+                que = "";
                 display("Does Not Compute!");
                 break;
             }
             else {
                 display(divide(first, second));
-                displayValue = `${screen.textContent} / `;
+                displayValue = `${output.textContent} ${que} `;
+                que = "";
                 break;
             }
     }
@@ -66,10 +74,11 @@ calcBody.addEventListener("click", (e)=>{
         [firstNumber, operator, secondNumber] = displayValue.split(" ");
         operate(firstNumber, secondNumber, operator);   
     }
-    else if (pressed == "add" || pressed == "subtract"|| pressed == "mult"|| pressed == "divide") {
+    else if (pressed == "add" || pressed == "subtract" || pressed == "mult" || pressed == "divide") {
         if (displayValue.split(" ").length == 3) {
+            que = e.target.textContent;
             [firstNumber, operator, secondNumber] = displayValue.split(" ");
-            operate(firstNumber, secondNumber, operator)
+            operate(firstNumber, secondNumber, operator);
         }
         else {
             displayValue += ` ${e.target.textContent} `;
