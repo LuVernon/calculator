@@ -9,15 +9,15 @@ let output = document.querySelector("#output");
 function add (a, b) {
     a = Number(a);
     b = Number(b);
-    return a+b;
+    return Math.round((a+b)*100)/100;
 }
 
 function subtract (a, b) {
-    return a-b;
+    return Math.round((a-b)*100)/100;
 }
 
 function multiply (a, b) {
-    return a*=b;
+    return Math.round((a*=b)*100)/100;
 }
 
 function divide (a, b) {
@@ -67,12 +67,18 @@ calcBody.addEventListener("click", (e)=>{
     let pressed = e.target.id;
     if (pressed == "clear") {
         displayValue = "";
+        que = "";
         display(displayValue);
     }
     else if (pressed == "enter") {
         let arr = displayValue.split(" ");
         [firstNumber, operator, secondNumber] = displayValue.split(" ");
-        operate(firstNumber, secondNumber, operator);   
+        if (secondNumber == "") {
+            return; 
+        }
+        else {
+            operate(firstNumber, secondNumber, operator);   
+        }
     }
     else if (pressed == "add" || pressed == "subtract" || pressed == "mult" || pressed == "divide") {
         if (displayValue.split(" ").length == 3) {
